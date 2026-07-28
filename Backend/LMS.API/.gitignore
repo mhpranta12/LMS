@@ -1,0 +1,4 @@
+**/bin/
+**/obj/
+**/.vs/
+/LMS.API/appsettings.Development.json
