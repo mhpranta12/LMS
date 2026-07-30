@@ -24,17 +24,44 @@ namespace LMS.Infrastructure
         {
             
         }
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder); // Fluent configurations go here 
-            builder.Entity<Book>().HasKey(x => x.Id);
-            builder.Entity<Branch>().HasKey(x => x.Id);
-            builder.Entity<Member>().HasKey(x => x.Id);
+            // ---------- Role -> User (1:M) ----------
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Role)
+                .WithMany(r => r.Users)
+                .HasForeignKey(u => u.RoleId)
+                .OnDelete(DeleteBehavior.Cascade); // don't allow deleting a role in use
 
-            builder.Entity<Book>().
-                            HasOne(b => b.BookBranch)
-                            .WithMany()
-                            .HasForeignKey(b => b.BranchId);
+
+            // ---------- Branch -> Member (1:M) ----------
+            modelBuilder.Entity<Member>()
+                .HasOne(m => m.Branch)
+                .WithMany(b => b.Members)
+                .HasForeignKey(m => m.BranchId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            // ---------- Category -> Book (1:M) ----------
+            modelBuilder.Entity<Book>()
+                .HasOne(b => b.Category)
+                .WithMany(c => c.Books)
+                .HasForeignKey(b => b.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            // ---------- Member -> Loan (1:M) ----------
+            modelBuilder.Entity<Loan>()
+                .HasOne(l => l.Member)
+                .WithMany(m => m.Loans)
+                .HasForeignKey(l => l.MemberId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // ---------- Unique constraints ----------
+            modelBuilder.Entity<User>().HasIndex(u => u.Username).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+            modelBuilder.Entity<Member>().HasIndex(m => m.Email).IsUnique();
+
         }
     }
-}
+ }

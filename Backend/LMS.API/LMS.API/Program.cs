@@ -1,4 +1,6 @@
+using LMS.Infrastructure;
 using LMS.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddJWT(builder.Configuration);
+
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName)));
 
 var app = builder.Build();
 

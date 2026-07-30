@@ -8,5 +8,6 @@ namespace LMS.Application.Features.Services
 {
     public class MemberService : IMemberService
     {
+
     }
 }
