@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Infrastructure.Repositories
 {
-    public class MemberRepository : Repository<Member>, IRepository<Member>
+    public class MemberRepository : Repository<Member>, IMemberRepository
     {
         public MemberRepository(ApplicationDBContext context) : base(context)
         {

@@ -1,5 +1,9 @@
 ﻿using LMS.Application;
+using LMS.Application.Features.Services;
 using LMS.Application.Interfaces;
+using LMS.Domain.Repositories;
+using LMS.Infrastructure.Auth;
+using LMS.Infrastructure.Repositories;
 using LMS.Infrastructure.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -49,7 +53,34 @@ namespace LMS.Infrastructure.Extensions
         }
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBranchRepository, BranchRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ILoanRepository, LoanRepository>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleManagementRepository, RoleRepository>();
+
+            return services;
+        }
+        public static IServiceCollection AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IBranchService, IBranchService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ILoanService, LoanService>();
+            services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IUserManagementService, UserManagementService>();
+            services.AddScoped<IRoleManagementService, RoleManagementService>();
+
+            return services;
+        }
+        public static IServiceCollection AddUtilityDI(this IServiceCollection services)
+        {
+            services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+            services.AddScoped<IApplicationUnitOfWork, ApplicationUnitOfWork>();
+            services.AddScoped<IApplicationDBContext, ApplicationDBContext>();
 
             return services;
         }

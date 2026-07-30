@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Application.Features.Services
 {
-    public class RoleManagementService
+    public class RoleManagementService : IRoleManagementService
     {
     }
 }
