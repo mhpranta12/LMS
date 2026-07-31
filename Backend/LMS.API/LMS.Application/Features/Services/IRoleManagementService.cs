@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LMS.Application.Dtos.AccountDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace LMS.Application.Features.Services
 {
     public interface IRoleManagementService
     {
-
+        Task<UserRoleDto> CreateRoleAsync(UserRoleDto request); 
+        Task<UserRoleDto> UpdateRoleAsync(UserRoleDto request); 
+        Task DeleteRoleAsync(Guid id); 
+        Task<UserRoleDto> GetRoleByIdAsync(Guid id);
     }
 }

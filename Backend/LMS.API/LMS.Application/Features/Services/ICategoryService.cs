@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LMS.Application.Dtos.CategoryDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace LMS.Application.Features.Services
 {
     public interface ICategoryService
     {
-
+        Task<CategoryRequestDto> CreateCategoryAsync(CategoryRequestDto request); 
+        Task<CategoryRequestDto> UpdateCategoryAsync(CategoryRequestDto request); 
+        Task DeleteCategoryAsync(Guid id); 
+        Task<CategoryResponseDto> GetCategoryByIdAsync(Guid id);
     }
 }
