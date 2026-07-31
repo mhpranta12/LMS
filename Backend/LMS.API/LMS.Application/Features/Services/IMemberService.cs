@@ -13,5 +13,7 @@ namespace LMS.Application.Features.Services
         Task<MemberRequestDto> UpdateMemberAsync(MemberRequestDto request); 
         Task DeleteMemberAsync(Guid id); 
         Task<MemberResponseDto> GetMemberByIdAsync(Guid id);
+        Task<IEnumerable<MemberResponseDto>> GetAllMembersAsync();
+
     }
 }

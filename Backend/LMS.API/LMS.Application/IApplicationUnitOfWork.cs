@@ -14,7 +14,7 @@ namespace LMS.Application
         public IMemberRepository MemberRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
         public ILoanRepository LoanRepository { get; }
-        public IUserManagementRepository UserManagementRepository { get; }
+        public IUserRepository UserRepository { get; }
         public IRoleManagementRepository RoleManagementRepository { get; }
 
     }

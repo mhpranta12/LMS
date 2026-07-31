@@ -67,7 +67,7 @@ namespace LMS.Infrastructure.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IBookService, BookService>();
-            services.AddScoped<IBranchService, IBranchService>();
+            services.AddScoped<IBranchService, BranchService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ILoanService, LoanService>();
             services.AddScoped<IMemberService, MemberService>();

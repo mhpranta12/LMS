@@ -13,5 +13,6 @@ namespace LMS.Application.Features.Services
         Task<LoanRequestDto> UpdateLoanAsync(LoanRequestDto request); 
         Task DeleteLoanAsync(Guid id); 
         Task<LoanResponseDto> GetLoanByIdAsync(Guid id);
+        Task<IEnumerable<LoanResponseDto>> GetAllLoansAsync();
     }
 }

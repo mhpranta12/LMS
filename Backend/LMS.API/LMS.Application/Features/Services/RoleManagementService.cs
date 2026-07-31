@@ -19,6 +19,11 @@ namespace LMS.Application.Features.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<UserRoleDto>> GetAllRolesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserRoleDto> GetRoleByIdAsync(Guid id)
         {
             throw new NotImplementedException();
@@ -28,5 +33,7 @@ namespace LMS.Application.Features.Services
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

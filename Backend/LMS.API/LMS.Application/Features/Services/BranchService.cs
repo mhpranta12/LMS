@@ -19,6 +19,11 @@ namespace LMS.Application.Features.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<BranchResponseDto>> GetAllBranchesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<BranchResponseDto> GetBranchByIdAsync(Guid id)
         {
             throw new NotImplementedException();

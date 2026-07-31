@@ -13,5 +13,6 @@ namespace LMS.Application.Features.Services
         Task<UserRoleDto> UpdateRoleAsync(UserRoleDto request); 
         Task DeleteRoleAsync(Guid id); 
         Task<UserRoleDto> GetRoleByIdAsync(Guid id);
+        Task<IEnumerable<UserRoleDto>> GetAllRolesAsync();
     }
 }

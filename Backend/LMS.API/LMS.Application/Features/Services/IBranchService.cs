@@ -13,5 +13,6 @@ namespace LMS.Application.Features.Services
         Task<BranchRequestDto> UpdateBranchAsync(BranchRequestDto request);
         Task DeleteBranchAsync(Guid id);
         Task<BranchResponseDto> GetBranchByIdAsync(Guid id);
+        Task<IEnumerable<BranchResponseDto>> GetAllBranchesAsync();
     }
 }

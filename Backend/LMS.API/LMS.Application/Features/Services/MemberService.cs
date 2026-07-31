@@ -19,6 +19,11 @@ namespace LMS.Application.Features.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<MemberResponseDto>> GetAllMembersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<MemberResponseDto> GetMemberByIdAsync(Guid id)
         {
             throw new NotImplementedException();

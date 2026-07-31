@@ -10,8 +10,9 @@ namespace LMS.Application.Features.Services
     public interface IBookService
     {
         Task<BookRequestDto> CreateBookAsync(BookRequestDto request);
-        Task<BookRequestDto> UpdateBookAsync(BookRequestDto request);
+        Task<bool> UpdateBookAsync(BookRequestDto request);
         Task DeleteBookAsync(Guid id);
         Task<BookResponseDto> GetBookByIdAsync(Guid id);
+        Task<IEnumerable<BookResponseDto>> GetAllBooksAsync();
     }
 }

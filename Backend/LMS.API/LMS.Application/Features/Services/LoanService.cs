@@ -19,6 +19,11 @@ namespace LMS.Application.Features.Services
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<LoanResponseDto>> GetAllLoansAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<LoanResponseDto> GetLoanByIdAsync(Guid id)
         {
             throw new NotImplementedException();

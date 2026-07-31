@@ -12,7 +12,7 @@ namespace LMS.Application.Dtos.BookDtos
         public string Title { get; set; } = string.Empty;
         public bool IsBorrowed { get; set; }
         public string? Publisher { get; set; }
-        public Guid? BranchId { get; set; }
-        public Guid? CategoryId { get; set; }
+        public string? Branch { get; set; }
+        public string? Category { get; set; }
     }
 }

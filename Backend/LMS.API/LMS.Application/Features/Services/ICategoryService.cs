@@ -13,5 +13,7 @@ namespace LMS.Application.Features.Services
         Task<CategoryRequestDto> UpdateCategoryAsync(CategoryRequestDto request); 
         Task DeleteCategoryAsync(Guid id); 
         Task<CategoryResponseDto> GetCategoryByIdAsync(Guid id);
+        Task<IEnumerable<CategoryResponseDto>> GetAllCategoriesAsync();
+
     }
 }

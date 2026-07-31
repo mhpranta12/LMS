@@ -23,16 +23,38 @@ namespace LMS.Application.Features.Services
         {
             try
             {
-                var entity = new Book()
+                if(request?.Id != Guid.Empty)
                 {
-                    Id = Guid.NewGuid(),
-                    Title = request.Title,
-                    Publisher = request.Publisher,
-                    IsBorrowed = false,
-                    BranchId = request.BranchId,
-                    CategoryId = request.CategoryId,
-                };
-                await _unitOfWork.BookRepository.AddAsync(entity);
+                    var entity = await _unitOfWork.BookRepository.GetByIdAsync(request.Id);
+
+                    if (entity is null)
+                    {
+
+                    }
+                    else
+                    {
+                        entity.Title = request.Title;
+                        entity.Publisher = request.Publisher;
+                        entity.IsBorrowed = false;
+                        entity.BranchId = request.BranchId;
+                        entity.CategoryId = request.CategoryId;
+                        _unitOfWork.BookRepository.Update(entity);
+                    }
+                }
+                else
+                {
+                    var entity = new Book()
+                    {
+                        Id = Guid.NewGuid(),
+                        Title = request.Title,
+                        Publisher = request.Publisher,
+                        IsBorrowed = false,
+                        BranchId = request.BranchId,
+                        CategoryId = request.CategoryId,
+                    };
+                    await _unitOfWork.BookRepository.AddAsync(entity);
+                    await _unitOfWork.BookRepository.SaveAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -43,19 +65,69 @@ namespace LMS.Application.Features.Services
             return request;
         }
 
-        public Task DeleteBookAsync(Guid id)
+        public async Task DeleteBookAsync(Guid id)
+        {
+            try
+            {
+                var entity = await _unitOfWork.BookRepository.GetByIdAsync(id);
+                _unitOfWork.BookRepository.Delete(entity);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to delete this book. Exception = " + ex);
+                throw ex;
+            }
+
+        }
+
+        public Task<IEnumerable<BookResponseDto>> GetAllBooksAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<BookResponseDto> GetBookByIdAsync(Guid id)
+        public async Task<BookResponseDto> GetBookByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await _unitOfWork.BookRepository.GetByIdAsync(id);
+            var branch = await _unitOfWork.BranchRepository.GetByIdAsync((Guid)entity.BranchId);
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync((Guid)entity.CategoryId);
+
+            var response = new BookResponseDto()
+            {
+                Title = entity.Title,
+                Publisher = entity.Publisher,
+                Branch = branch?.Name,
+                Category = category?.Name,
+            };
+            return response;
         }
 
-        public Task<BookRequestDto> UpdateBookAsync(BookRequestDto request)
+        public async Task<bool> UpdateBookAsync(BookRequestDto request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = await _unitOfWork.BookRepository.GetByIdAsync(request.Id);
+
+                if(entity is null)
+                {
+
+                }
+                else
+                {
+                    entity.Title = request.Title;
+                    entity.Publisher = request.Publisher;
+                    entity.IsBorrowed = false;
+                    entity.BranchId = request.BranchId;
+                    entity.CategoryId = request.CategoryId;
+                    _unitOfWork.BookRepository.Update(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to create book. Exception = " + ex);
+                throw ex;
+            }
+
+            return true;
         }
     }
 }
