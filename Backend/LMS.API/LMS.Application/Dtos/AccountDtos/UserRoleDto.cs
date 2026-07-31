@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMS.Application.Dtos.CategoryDtos
+namespace LMS.Application.Dtos.AccountDtos
 {
-    public class CategoryRequestDto
+    public class UserRoleDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string? Description { get; set; }
     }
 }

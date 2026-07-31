@@ -8,5 +8,8 @@ namespace LMS.Application.Dtos.MemberDtos
 {
     public class MemberRequestDto
     {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public Guid BranchId { get; set; }
     }
 }

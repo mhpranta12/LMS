@@ -8,5 +8,6 @@ namespace LMS.Application.Dtos.MemberDtos
 {
     public class MemberResponseDto
     {
+
     }
 }

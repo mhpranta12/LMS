@@ -8,5 +8,11 @@ namespace LMS.Application.Dtos.BookDtos
 {
     public class BookResponseDto
     {
+        public Guid Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public bool IsBorrowed { get; set; }
+        public string? Publisher { get; set; }
+        public Guid? BranchId { get; set; }
+        public Guid? CategoryId { get; set; }
     }
 }
