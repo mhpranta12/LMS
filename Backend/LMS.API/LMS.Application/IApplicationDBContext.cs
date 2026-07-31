@@ -13,5 +13,6 @@ namespace LMS.Application
         DbSet<Book> Books { get; set; }
         DbSet<Branch> Branches { get; set; }
         DbSet<Member> Members { get; set; }
+        DbSet<Category> Category { get; set; }
     }
 }

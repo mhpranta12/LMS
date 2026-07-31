@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Domain.Entities
 {
-    public class Book:IEntity<Guid>
+    public class Book : IEntity<Guid>
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

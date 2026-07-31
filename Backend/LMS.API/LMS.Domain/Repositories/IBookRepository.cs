@@ -9,6 +9,6 @@ namespace LMS.Domain.Repositories
 {
     public interface IBookRepository:IRepository<Book>
     {
-
+        Task<IEnumerable<Book>> GetAllBookByBranchIdAsync(Guid id);
     }
 }

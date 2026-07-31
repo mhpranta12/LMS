@@ -33,5 +33,33 @@ namespace LMS.API.Controllers
                 throw;
             }
         }
+        [HttpGet("Get/Book/{id}")]
+        public async Task<IActionResult> GetBookById(Guid id)
+        {
+            try
+            {
+                var result = await _bookService.GetBookByIdAsync(id);
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Book") });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
+        [HttpGet("Get/Books")]
+        public async Task<IActionResult> GetAllBooksByBranchId(Guid id)
+        {
+            try
+            {
+                var result = await _bookService.GetAllBookByBranchIdAsync(id);
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Book") });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
     }
 }

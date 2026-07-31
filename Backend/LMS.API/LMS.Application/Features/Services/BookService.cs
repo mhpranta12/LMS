@@ -13,7 +13,7 @@ namespace LMS.Application.Features.Services
     {
         private readonly IApplicationUnitOfWork _unitOfWork;
         private readonly ILogger<IBookService> _logger;
-        public BookService (IApplicationUnitOfWork unitOfWork, ILogger<IBookService> logger)
+        public BookService(IApplicationUnitOfWork unitOfWork, ILogger<IBookService> logger)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
@@ -23,7 +23,7 @@ namespace LMS.Application.Features.Services
         {
             try
             {
-                if(request?.Id != Guid.Empty)
+                if (request?.Id != Guid.Empty)
                 {
                     var entity = await _unitOfWork.BookRepository.GetByIdAsync(request.Id);
 
@@ -63,7 +63,7 @@ namespace LMS.Application.Features.Services
                 _logger.LogError("Failed to create book. Exception = " + ex);
                 throw ex;
             }
-            
+
             return request;
         }
 
@@ -82,11 +82,32 @@ namespace LMS.Application.Features.Services
 
         }
 
-        public Task<IEnumerable<BookResponseDto>> GetAllBookByBranchIdAsync(Guid id)
+        public async Task<IEnumerable<BookResponseDto>> GetAllBookByBranchIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var books = await _unitOfWork.BookRepository.GetAllBookByBranchIdAsync(id);
+
+            if (!books.Any())
+                return Enumerable.Empty<BookResponseDto>();
+
+            var result = await Task.WhenAll(
+                books.Select(async book => new BookResponseDto
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Publisher = book.Publisher,
+                    Branch = book.BranchId.HasValue
+                        ? await GetBranchNameByIDAsync(book.BranchId.Value)
+                        : null
+                }));
+
+            return result;
         }
 
+        public async Task<string> GetBranchNameByIDAsync(Guid id)
+        {
+            var branch = await _unitOfWork.BranchRepository.GetByIdAsync(id);
+            return branch.Name;
+        }
         public Task<IEnumerable<BookResponseDto>> GetAllBooksAsync()
         {
             throw new NotImplementedException();

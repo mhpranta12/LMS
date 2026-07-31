@@ -15,6 +15,7 @@ namespace LMS.Infrastructure
         public DbSet<Book> Books { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Member> Members { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
