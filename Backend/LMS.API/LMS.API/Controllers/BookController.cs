@@ -18,7 +18,7 @@ namespace LMS.API.Controllers
         { 
             _bookService = bookService;
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost("Create/Book")]
         public async Task<IActionResult> CreateBook(BookRequestDto request)
         {

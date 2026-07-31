@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LMS.Application.Dtos.AccountDtos;
+using LMS.Application.Features.Services;
+using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LMS.API.Controllers
@@ -7,5 +10,41 @@ namespace LMS.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly IUserManagementService _userService;
+        EventMessages messages = new EventMessages();
+        public AccountController(IUserManagementService userService)
+        {
+            _userService = userService;
+        }
+        //[Authorize]
+        [HttpPost("Create/User")]
+        public async Task<IActionResult> CreateUser(UserRequestDto request)
+        {
+            try
+            {
+                var result = await _userService.CreateUserAsync(request);
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("User") });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
+        //[Authorize]
+        //[HttpPost("Create/Role")]
+        //public async Task<IActionResult> CreateRole(UserRoleDto request)
+        //{
+        //    try
+        //    {
+        //        //var result = await _userService.CreateRoleAsync(request);
+        //        return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Role") });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+        //        throw;
+        //    }
+        //}
     }
 }

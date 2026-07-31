@@ -9,5 +9,6 @@ namespace LMS.Domain.Repositories
 {
     public interface IBranchRepository : IRepository<Branch>
     {
+
     }
 }

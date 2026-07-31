@@ -39,6 +39,8 @@ namespace LMS.Application.Features.Services
                         entity.BranchId = request.BranchId;
                         entity.CategoryId = request.CategoryId;
                         _unitOfWork.BookRepository.Update(entity);
+                        await _unitOfWork.BookRepository.SaveAsync();
+
                     }
                 }
                 else
@@ -80,6 +82,11 @@ namespace LMS.Application.Features.Services
 
         }
 
+        public Task<IEnumerable<BookResponseDto>> GetAllBookByBranchIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<BookResponseDto>> GetAllBooksAsync()
         {
             throw new NotImplementedException();
@@ -101,33 +108,5 @@ namespace LMS.Application.Features.Services
             return response;
         }
 
-        public async Task<bool> UpdateBookAsync(BookRequestDto request)
-        {
-            try
-            {
-                var entity = await _unitOfWork.BookRepository.GetByIdAsync(request.Id);
-
-                if(entity is null)
-                {
-
-                }
-                else
-                {
-                    entity.Title = request.Title;
-                    entity.Publisher = request.Publisher;
-                    entity.IsBorrowed = false;
-                    entity.BranchId = request.BranchId;
-                    entity.CategoryId = request.CategoryId;
-                    _unitOfWork.BookRepository.Update(entity);
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Failed to create book. Exception = " + ex);
-                throw ex;
-            }
-
-            return true;
-        }
     }
 }

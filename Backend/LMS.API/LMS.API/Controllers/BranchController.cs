@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LMS.Application.Dtos.BranchDtos;
+using LMS.Application.Features.Services;
+using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,32 +11,25 @@ namespace LMS.API.Controllers
     [ApiController]
     public class BranchController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<BranchController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        private readonly IBranchService _branchService; 
+        EventMessages messages = new EventMessages(); 
+        public BranchController(IBranchService branchService) 
+        { 
+            _branchService = branchService; 
+        } 
+        //[Authorize]
+        [HttpPost("Create/Branch")]
+        public async Task<IActionResult> CreateBranch(BranchRequestDto request)
+        { 
+            try 
+            { 
+                var result = await _branchService.CreateOrUpdateBranchAsync(request); 
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Branch") }); }
+            catch (Exception ex) 
+            { 
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required }); 
+                throw; 
+            } 
         }
     }
 }
