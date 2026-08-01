@@ -10,9 +10,6 @@
 
 
 ## Architecture
-
-[Describe the architectural style used, e.g. Clean/Onion Architecture, and briefly explain each layer's responsibility.]
-
 ```
 ┌─────────────────────────────┐
 │        Presentation         │  ← Controllers, API endpoints
@@ -24,4 +21,21 @@
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
 <b> Set Up Instructions <b>
+## Backend
+
+
+
+## Front End
+
+
+
+## Features Completed
+
+
+
+## Assumptions and design decisions
+
+
+
+## How to run the application
 
