@@ -4,7 +4,7 @@ This application consisted with multiple features focusing on the management of 
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
-![.React](https://img.shields.io/badge/.NET-8.0-blue)
+![React]
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ---
