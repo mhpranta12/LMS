@@ -59,7 +59,7 @@ Then open the given port in browser
 
 ## Bonus Feature
 - PDF generation for All of the books
-![Alt text](books pdf.PNG)
+![Alt text](books pdf .PNG)
 ## Assumptions and design decisions
 - Architecture: Clean Architecture (To ensure proper organization, single responsibility, testability)
 - Design Principles : SOLID (To ensure separation of concern)
