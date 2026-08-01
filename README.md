@@ -20,20 +20,20 @@
 ├─────────────────────────────┤
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
----
+
 ```
 ## Set Up Instructions 
 **Backend**
-Clone the repository
-Copy the appsetting.json file
-Create a Database in local named lms
-Run the migrations file from the repository
-Then rebuild the application
-Then run the API Project.
-Then Add some User role in the data base role table. 
-Then Register as a new user
-Then Login by that credentials
-Then End points will be seen
+- Clone the repository
+- Copy the `appsettings.json` file
+- Create a database in local named `lms`
+- Run the migrations file from the repository
+- Then rebuild the application
+- Then run the API project
+- Then add some user role in the database `Role` table
+- Then register as a new user
+- Then log in with those credentials
+- Then endpoints will be accessible
 
 
 ## Front End
