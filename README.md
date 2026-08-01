@@ -23,5 +23,5 @@
 ├─────────────────────────────┤
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
-## Set Up Instructions 
+<b> Set Up Instructions <b>
 
