@@ -1,4 +1,5 @@
-﻿using LMS.Domain.Repositories;
+﻿using LMS.Domain;
+using LMS.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Application
 {
-    public interface IApplicationUnitOfWork
+    public interface IApplicationUnitOfWork : IUnitOfWork
     {
         public IBookRepository BookRepository { get; }
         public IBranchRepository BranchRepository { get; }

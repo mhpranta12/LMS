@@ -9,6 +9,6 @@ namespace LMS.Domain.Repositories
 {
     public interface IUserRepository:IRepository<User>
     {
-        //void GetByEmailAsync(string email);
+        Task<User?> GetByEmailAsync(string email);
     }
 }

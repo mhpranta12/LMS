@@ -1,6 +1,7 @@
 ﻿using LMS.Application.Dtos.AccountDtos;
 using LMS.Application.Features.Services;
 using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,14 @@ namespace LMS.API.Controllers
                 return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
                 throw;
             }
+        }
+        [HttpPost("Login")]
+        [AllowAnonymous] // important — don't require a token to get a token
+        public async Task<ActionResult<LoginResponseDto>> SignIn(
+        [FromBody] LoginRequestDto request)
+        {
+            var result = await _userService.SignInAsync(request);
+            return Ok(result);
         }
         //[Authorize]
         //[HttpPost("Create/Role")]

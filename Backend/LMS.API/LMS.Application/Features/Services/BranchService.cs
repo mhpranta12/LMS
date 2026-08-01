@@ -51,8 +51,6 @@ namespace LMS.Application.Features.Services
                         Name = request.Name,
                         Address = request.Address,
                         Phone = request.Phone,
-
-                        
                     };
                     await _unitOfWork.BranchRepository.AddAsync(entity);
                     await _unitOfWork.BookRepository.SaveAsync();
@@ -67,9 +65,13 @@ namespace LMS.Application.Features.Services
             return request;
         }
 
-        public Task DeleteBranchAsync(Guid id)
+        public async Task DeleteBranchAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await _unitOfWork.BranchRepository.GetByIdAsync(id);
+            if (entity is null)
+                throw new Exception("Branch doesn't exist");
+
+            _unitOfWork.BranchRepository.Delete(entity);
         }
 
         public Task<IEnumerable<BranchResponseDto>> GetAllBranchesAsync()
@@ -77,11 +79,27 @@ namespace LMS.Application.Features.Services
             throw new NotImplementedException();
         }
 
-        public Task<BranchResponseDto> GetBranchByIdAsync(Guid id)
+        public async Task<BranchResponseDto> GetBranchByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            var entity = await _unitOfWork.BranchRepository.GetByIdAsync(id);
+            if (entity is null)
+                throw new Exception("Entity wasn't found");
 
+            return FromEntitytoDto(entity);
+        }
+        public BranchResponseDto FromEntitytoDto(Branch branch)
+        {
+            if(branch is null)
+                throw new ArgumentNullException(nameof(branch));
+
+            var dto = new BranchResponseDto()
+            {
+                Id = branch.Id,
+                Address = branch.Address,
+                Phone = branch.Phone
+            };
+            return dto;
+        }
         public Task<BranchRequestDto> UpdateBranchAsync(BranchRequestDto request)
         {
             throw new NotImplementedException();

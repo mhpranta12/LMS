@@ -1,4 +1,5 @@
 ﻿using LMS.Application.Dtos.AccountDtos;
+using LMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace LMS.Application.Features.Services
         Task<UserRequestDto> UpdateUserAsync(UserRequestDto request); 
         Task DeleteUserAsync(Guid id); 
         Task<UserRequestDto> GetUserByIdAsync(Guid id);
+        Task<LoginResponseDto> SignInAsync(LoginRequestDto request);
+        Task<User?> GetByUsernameAsync(string username);
     }
 }

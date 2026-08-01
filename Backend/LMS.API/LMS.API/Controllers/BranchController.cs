@@ -18,8 +18,8 @@ namespace LMS.API.Controllers
             _branchService = branchService; 
         } 
         //[Authorize]
-        [HttpPost("Create/Branch")]
-        public async Task<IActionResult> CreateBranch(BranchRequestDto request)
+        [HttpPost("CreateOrUpdate/Branch")]
+        public async Task<IActionResult> CreateOrUpdateBranch(BranchRequestDto request)
         { 
             try 
             { 

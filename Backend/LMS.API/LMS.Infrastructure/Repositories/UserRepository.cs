@@ -1,7 +1,9 @@
 ﻿using Azure.Core;
+using LMS.Application;
 using LMS.Application.Interfaces;
 using LMS.Domain.Entities;
 using LMS.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,14 +13,24 @@ using System.Threading.Tasks;
 
 namespace LMS.Infrastructure.Repositories
 {
-    public class UserRepository : Repository<User>,IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
+
+        private readonly IApplicationDBContext _context;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IPasswordHasher _passwordHasher;
-        public UserRepository(ApplicationDBContext context,IJwtTokenGenerator jwtTokenGenerator,IPasswordHasher passwordHasher) : base(context)
+        public UserRepository(ApplicationDBContext context, IJwtTokenGenerator jwtTokenGenerator, IPasswordHasher passwordHasher) : base(context)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _passwordHasher = passwordHasher;
+            _context = context;
+        }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            return await _context.User
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.Email == email) ?? null;
         }
         public void Register()
         {
@@ -35,6 +47,6 @@ namespace LMS.Infrastructure.Repositories
 
             //var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Email, roles);
         }
-        
+
     }
 }

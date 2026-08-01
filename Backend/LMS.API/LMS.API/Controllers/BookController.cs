@@ -13,18 +13,21 @@ namespace LMS.API.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
+        private readonly ILogger<BookController> _logger;
+
         EventMessages messages = new EventMessages();
-        public BookController(IBookService bookService) 
-        { 
+        public BookController(IBookService bookService, ILogger<BookController> logger)
+        {
             _bookService = bookService;
+            _logger = logger;
         }
-        //[Authorize]
-        [HttpPost("Create/Book")]
-        public async Task<IActionResult> CreateBook(BookRequestDto request)
+        [Authorize]
+        [HttpPost("CreateOrUpdate")]
+        public async Task<IActionResult> CreateOrUpdateBook(BookRequestDto request)
         {
             try
             {
-                var result = await _bookService.CreateBookAsync(request);
+                var result = await _bookService.CreateOrUpdateBookAsync(request);
                 return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Book") });
             }
             catch (Exception ex)
@@ -33,7 +36,8 @@ namespace LMS.API.Controllers
                 throw;
             }
         }
-        [HttpGet("Get/Book/{id}")]
+        [Authorize]
+        [HttpGet("Get/{id}")]
         public async Task<IActionResult> GetBookById(Guid id)
         {
             try
@@ -47,7 +51,39 @@ namespace LMS.API.Controllers
                 throw;
             }
         }
-        [HttpGet("Get/Books")]
+        [Authorize]
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetBooks()
+        {
+            try
+            {
+                var result = await _bookService.GetAllBooksAsync();
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Message("Books retrieved") });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
+        [Authorize]
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteBookById(Guid id)
+        {
+            try
+            {
+                var result = _bookService.DeleteBookAsync(id);
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Delete("Book") });
+            }
+            catch (Exception ex)
+            {
+
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
+        [Authorize]
+        [HttpGet("Get/ByBranchId/{id}")]
         public async Task<IActionResult> GetAllBooksByBranchId(Guid id)
         {
             try
@@ -57,6 +93,23 @@ namespace LMS.API.Controllers
             }
             catch (Exception ex)
             {
+
+                return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
+                throw;
+            }
+        }
+        [Authorize]
+        [HttpGet("Get/ByCategoryId/{id}")]
+        public async Task<IActionResult> GetAllBooksByCategoryId(Guid id)
+        {
+            try
+            {
+                var result = await _bookService.GetAllBookByCategoryIdAsync(id);
+                return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Book") });
+            }
+            catch (Exception ex)
+            {
+
                 return Ok(new ResponseResult { Result = false, IsSuccess = false, Message = messages.Required });
                 throw;
             }

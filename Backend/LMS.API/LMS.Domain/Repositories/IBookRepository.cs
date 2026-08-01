@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace LMS.Domain.Repositories
 {
-    public interface IBookRepository:IRepository<Book>
+    public interface IBookRepository : IRepository<Book>
     {
         Task<IEnumerable<Book>> GetAllBookByBranchIdAsync(Guid id);
+        Task<IEnumerable<Book>> GetAllBooksAsync();
+        Task<IEnumerable<Book>> GetAllBookByCategoryIdAsync(Guid categoryId);
     }
 }

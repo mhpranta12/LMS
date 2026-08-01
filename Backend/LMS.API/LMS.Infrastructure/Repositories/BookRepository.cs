@@ -26,5 +26,19 @@ namespace LMS.Infrastructure.Repositories
                                     .ToListAsync();
             return result;
         }
+        public async Task<IEnumerable<Book>> GetAllBookByCategoryIdAsync(Guid categoryId)
+        {
+            var result = new List<Book>();
+            result = await _applicationDBContext.Books
+                                    .Where(x => x.CategoryId == categoryId)
+                                    .ToListAsync();
+            return result;
+        }
+        public async Task<IEnumerable<Book>> GetAllBooksAsync()
+        {
+            var result = new List<Book>();
+            result = await _applicationDBContext.Books.ToListAsync();
+            return result;
+        }
     }
 }
