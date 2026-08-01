@@ -23,7 +23,7 @@
 
 ```
 ## Set Up Instructions 
-**Backend**
+## Backend
 - Clone the repository
 - Copy the `appsettings.json` file
 - Create a database in local named `lms`
@@ -46,16 +46,16 @@ Then open the given port in browser
 
 
 ## Features Completed
-Backend
--Full CRUD for Books maagement . Also books by branch and by category view
+## Backend
+- Full CRUD for Books maagement . Also books by branch and by category view
 
-Frontend 
--Book List for All of the books
+## Frontend 
+- Book List for All of the books
 
 ## Assumptions and design decisions
--Architecture: Clean Architecture (To ensure proper organization, single responsiblity, testability)
--Design Principles : SOLID (To ensure separation of concern)
+- Architecture: Clean Architecture (To ensure proper organization, single responsiblity, testability)
+- Design Principles : SOLID (To ensure separation of concern)
 
--Design Patterns  : Unit of work (To ensure atomicity of operations) , Repository (To ensure single responsibility)
--Security : JWT Token
+- Design Patterns  : Unit of work (To ensure atomicity of operations) , Repository (To ensure single responsibility)
+- Security : JWT Token
 
