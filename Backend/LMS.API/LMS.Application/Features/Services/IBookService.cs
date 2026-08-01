@@ -15,5 +15,6 @@ namespace LMS.Application.Features.Services
         Task<IEnumerable<BookResponseDto>> GetAllBooksAsync();
         Task<IEnumerable<BookResponseDto>> GetAllBookByBranchIdAsync(Guid id);
         Task<IEnumerable<BookResponseDto>> GetAllBookByCategoryIdAsync(Guid id);
+        Task<byte[]> GenerateBooksReportInPDFAsync();
     }
 }

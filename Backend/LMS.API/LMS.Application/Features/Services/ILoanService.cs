@@ -9,7 +9,7 @@ namespace LMS.Application.Features.Services
 {
     public interface ILoanService
     {
-        Task<LoanRequestDto> CreateLoanAsync(LoanRequestDto request); 
+        Task<LoanRequestDto> CreateOrUpdateLoanAsync(LoanRequestDto request); 
         Task<LoanRequestDto> UpdateLoanAsync(LoanRequestDto request); 
         Task DeleteLoanAsync(Guid id); 
         Task<LoanResponseDto> GetLoanByIdAsync(Guid id);

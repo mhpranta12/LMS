@@ -81,7 +81,7 @@ namespace LMS.Infrastructure.Extensions
             services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
             services.AddScoped<IApplicationUnitOfWork, ApplicationUnitOfWork>();
             services.AddScoped<IApplicationDBContext, ApplicationDBContext>();
-
+            services.AddScoped<IPdfReportService, PdfReportService>();
             return services;
         }
     }

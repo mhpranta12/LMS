@@ -1,4 +1,5 @@
 ﻿using LMS.Application.Dtos.BookDtos;
+using LMS.Application.Interfaces;
 using LMS.Domain.Entities;
 using LMS.Domain.Exceptions;
 using Microsoft.Extensions.Logging;
@@ -14,10 +15,14 @@ namespace LMS.Application.Features.Services
     public class BookService : IBookService
     {
         private readonly IApplicationUnitOfWork _unitOfWork;
+        private readonly IPdfReportService _pdfReportService;
         private readonly ILogger<IBookService> _logger;
-        public BookService(IApplicationUnitOfWork unitOfWork, ILogger<IBookService> logger)
+        public BookService(IApplicationUnitOfWork unitOfWork,
+                            IPdfReportService pdfReportService,
+                            ILogger<IBookService> logger)
         {
             _unitOfWork = unitOfWork;
+            _pdfReportService = pdfReportService;
             _logger = logger;
         }
 
@@ -193,6 +198,11 @@ namespace LMS.Application.Features.Services
                 _logger.LogError("Failed to fetch book info exception = " + ex);
                 throw;
             }
+        }
+        public async Task<byte[]> GenerateBooksReportInPDFAsync()
+        {
+            var books = await GetAllBooksAsync(); // your existing method, reused as-is
+            return _pdfReportService.GenerateBooksReport(books);
         }
         // Utility Methods
         public async Task<string> GetBranchNameByIDAsync(Guid id)

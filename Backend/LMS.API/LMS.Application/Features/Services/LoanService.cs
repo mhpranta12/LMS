@@ -20,7 +20,7 @@ namespace LMS.Application.Features.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<LoanRequestDto> CreateLoanAsync(LoanRequestDto request)
+        public async Task<LoanRequestDto> CreateOrUpdateLoanAsync(LoanRequestDto request)
         {
             try
             {

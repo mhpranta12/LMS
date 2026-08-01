@@ -23,7 +23,7 @@ namespace LMS.API.Controllers
         {
             try
             {
-                var result = await _loanService.CreateLoanAsync(request);
+                var result = await _loanService.CreateOrUpdateLoanAsync(request);
                 return Ok(new ResponseResult { Result = result, IsSuccess = true, Message = messages.Insert("Loan") });
             }
             catch (Exception ex)

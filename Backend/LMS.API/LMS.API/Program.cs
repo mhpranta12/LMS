@@ -6,6 +6,10 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Program.cs, near the top
+
+//PDF Generator Setting
+QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

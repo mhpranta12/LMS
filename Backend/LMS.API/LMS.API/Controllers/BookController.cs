@@ -113,5 +113,11 @@ namespace LMS.API.Controllers
                 throw;
             }
         }
+        [HttpGet("export/pdf")]
+        public async Task<IActionResult> ExportBooksPdf()
+        {
+            var pdfBytes = await _bookService.GenerateBooksReportInPDFAsync();
+            return File(pdfBytes, "application/pdf", $"books-report-{DateTime.UtcNow:yyyyMMdd}.pdf");
+        }
     }
 }
