@@ -52,7 +52,6 @@ Then open the given port in browser
 - Create, Update for branch
 - Create, Update for category
 - Create, Update for Loan ( Borrowing book)
-- 
 
 ## Frontend 
 - Book List for All of the books
