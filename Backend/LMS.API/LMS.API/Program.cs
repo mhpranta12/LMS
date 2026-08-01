@@ -43,6 +43,16 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddJWT(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddServices();
@@ -63,7 +73,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("ReactPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 

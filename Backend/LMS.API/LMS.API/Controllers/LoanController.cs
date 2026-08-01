@@ -1,6 +1,7 @@
 ﻿using LMS.Application.Dtos.LoanDtos;
 using LMS.Application.Features.Services;
 using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace LMS.API.Controllers
         {
             _loanService = loanService;
         }
-        //[Authorize]
+        [Authorize]
         [HttpPost("Create/Loan")]
         public async Task<IActionResult> CreateLoan(LoanRequestDto request)
         {

@@ -1,6 +1,7 @@
 ﻿using LMS.Application.Dtos.CategoryDtos;
 using LMS.Application.Features.Services;
 using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace LMS.API.Controllers
             _categoryService = categoryService;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("Create/Category")]
         public async Task<IActionResult> CreateCategory(CategoryRequestDto request)
         {

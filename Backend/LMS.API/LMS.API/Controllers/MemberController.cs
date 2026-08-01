@@ -1,6 +1,7 @@
 ﻿using LMS.Application.Dtos.MemberDtos;
 using LMS.Application.Features.Services;
 using LMS.Infrastructure.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace LMS.API.Controllers
         {
             _memberService = memberService;
         }
-        //[Authorize] 
+        [Authorize]
         [HttpPost("Create/Member")]
         public async Task<IActionResult> CreateMember(MemberRequestDto request)
         {

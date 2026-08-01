@@ -51,7 +51,6 @@ namespace LMS.API.Controllers
                 throw;
             }
         }
-        [Authorize]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetBooks()
         {
