@@ -20,7 +20,8 @@
 ├─────────────────────────────┤
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
-
+---
+```
 ## Set Up Instructions 
 **Backend**
 Clone the repository
