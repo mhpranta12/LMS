@@ -52,6 +52,8 @@ Then open the given port in browser
 ## Frontend 
 - Book List for All of the books
 
+## Bonus Feature
+- PDF generation for All of the books
 ## Assumptions and design decisions
 - Architecture: Clean Architecture (To ensure proper organization, single responsiblity, testability)
 - Design Principles : SOLID (To ensure separation of concern)
