@@ -23,19 +23,5 @@
 ├─────────────────────────────┤
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
-
----
-
-## Project Structure
-
-```
-[ProjectName]/
-├── src/
-│   ├── [LMS].Domain/
-│   ├── [LMS].Application/
-│   ├── [LMS].Infrastructure/
-│   ├── [LMS].API/            # Frontend, if in the same repo
-├── docs/
-├── .gitignore
-└── README.md
+## Set Up Instructions 
 
