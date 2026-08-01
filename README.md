@@ -20,8 +20,9 @@
 ├─────────────────────────────┤
 │        Infrastructure       │  ← EF Core, repositories, external services
 └─────────────────────────────┘
-<b> Set Up Instructions <b>
-## Backend
+
+## Set Up Instructions 
+## **Backend**
 
 
 
