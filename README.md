@@ -1,6 +1,6 @@
-# [LMS (Library Management System)]
+# LMS (Library Management System)
 
-[This application consisted with multiple features focusing on the management of a library.]
+This application consisted with multiple features focusing on the management of a library.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
